@@ -13,11 +13,7 @@ def index(request): #the index view
     todos = TodoList.objects.all() #quering all todos with the object manager
     categories = Category.objects.all() #getting all categories with object manager
 
-    # for category in categories:
-    #     category.delete()
-    # Category.objects.get(name='Eating').delete()
     if request.method == "POST": #checking if the request method is a POST
-        print("I just clicked the buttommaaaaaaaaaaaaaaa")
         if "taskAdd" in request.POST: #checking if there is a request to add a todo
             title = request.POST["description"] #title
             date = str(request.POST["date"]) #date
@@ -38,7 +34,6 @@ def category(request):
     categories = Category.objects.all()
     if request.method == 'POST':
         if "addCategory" in request.POST:
-            print("This is a create category post request", request.POST)
             category_name = request.POST['category']
             if Category.objects.filter(name=category_name).exists():
                 raise Http404("Category already exists")
